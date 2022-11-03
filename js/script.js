@@ -9,12 +9,15 @@ class Memorama {
 
         this.card1 = null;
         this.card2 = null;
-
-        this.availableImages = [1,2,3,4,5,6,7,8];
+        this.images1=  [1,2,3,4,5,6,7,8];
+        this.images2 = [9,10,11,12,13,14,15,16];
+        this.images3 = [17,18,19,20,21,22,23,24];
+        this.images4 = [25,26,27,28,29,30,31,32];
+        this.availableImages = [this.images1, this.images2, this.images3, this.images4];
+        this.randomImages = 0;
         this.orderForThisRound = [];
         this.cards = Array.from( document.querySelectorAll(".board-game figure") );
-
-        this.maxPairNumber = this.availableImages.length;
+        this.maxPairNumber = 8;
 
         this.startGame();
 
@@ -31,8 +34,8 @@ class Memorama {
     }
 
     setNewOrder() {
-
-        this.orderForThisRound = this.availableImages.concat(this.availableImages);
+        this.randomImages = Math.floor(Math.random() * 4);
+        this.orderForThisRound = this.availableImages[this.randomImages].concat(this.availableImages[this.randomImages]);
         this.orderForThisRound.sort( () => Math.random() - 0.5 );
 
     }
@@ -114,9 +117,12 @@ class Memorama {
                 
             }
             else {
-
+                const firstOpened = document.querySelector(`.board-game figure.opened[data-image='${this.card1}']`);
+                const secondOpened = document.querySelector(`.board-game figure.opened[data-image='${this.card2}']`);
+                firstOpened.classList.add("shake");
+                secondOpened.classList.add("shake");
                 this.canPlay = false;
-                setTimeout(this.resetOpenedCards.bind(this), 1000)
+                setTimeout(this.resetOpenedCards.bind(this), 2000)
 
             }
 
@@ -131,6 +137,9 @@ class Memorama {
 
         firstOpened.classList.remove("opened");
         secondOpened.classList.remove("opened");
+
+        firstOpened.classList.remove("shake");
+        secondOpened.classList.remove("shake");
 
         this.card1 = null;
         this.card2 = null;
