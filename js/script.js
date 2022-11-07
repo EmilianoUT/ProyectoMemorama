@@ -9,10 +9,10 @@ class Memorama {
 
         this.card1 = null;
         this.card2 = null;
-        this.images1=  [1,2,3,4,5,6,7,8];
-        this.images2 = [9,10,11,12,13,14,15,16];
-        this.images3 = [17,18,19,20,21,22,23,24];
-        this.images4 = [25,26,27,28,29,30,31,32];
+        this.images1=  [1,10,3,12,5,14,7,16];
+        this.images2 = [9,2,11,4,13,6,15,8];
+        this.images3 = [25,18,27,20,29,22,31,24];
+        this.images4 = [17,26,19,28,21,30,23,32];
         this.availableImages = [this.images1, this.images2, this.images3, this.images4];
         this.randomImages = 0;
         this.orderForThisRound = [];
@@ -158,7 +158,7 @@ class Memorama {
 
         if (this.maxPairNumber == this.foundPairs) {
 
-            alert("¡Ganaste!");
+            alert("¡Ganaste! Ronda terminada en "+this.counter+" Intentos");
             this.setNewGame();
             
         }
